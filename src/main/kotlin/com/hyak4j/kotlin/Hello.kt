@@ -5,6 +5,10 @@ fun main() {
 //    Person().hello()
     val h = Person()
     h.hello()
+    val age : Int = 19;
+    var weight = 66.5f;
+    var name : String;
+    name = "Henry"
 }
 
 class Person{
