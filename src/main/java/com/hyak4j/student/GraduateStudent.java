@@ -1,30 +1,18 @@
 package com.hyak4j.student;
 
-public class Student {
-    String id;
-    String name;
-    int english;
-    int math;
-    static int pass = 60;
+public class GraduateStudent extends Student{
+    int thesis;
+    static int pass = 70;
 
-    public Student(String name, int english, int math) {
-        this.name = name;
-        this.english = english;
-        this.math = math;
+    public GraduateStudent(String name, int english, int math, int thesis){
+       super(name, english, math);
+       this.thesis = thesis;
     }
 
-    public int highest(){
-//        int max = (english > math) ? english : math;
-//        if (english > math){
-//            max = english;
-//        }else {
-//            max = math;
-//        }
-        return (english > math) ? english : math;
-    }
-
+    @Override
     public void print(){
         System.out.println(name + "\t" + english + "\t" + math +
+                "\t" + thesis +
                 "\t" + getAverage() + "\t" +
                 ((getAverage() >= pass) ? "PASS" : "FAILED"));
         char grading = 'F';
@@ -65,9 +53,4 @@ public class Student {
             System.out.println("\tFAILED");
         }*/
     }
-
-    public int getAverage(){
-        return (english + math)/2;
-    }
-
 }

@@ -4,8 +4,16 @@ import java.util.Scanner
 
 fun main() {
 //    userInput()
+    Student.pass = 10
     val student = Student("Henry", 80, 90)
+    val student2 = Student("Tom", 30, 20)
+    val student3 = Student("James", 50, 40)
+
+    val gstu = GraduateStudent("Eric", 60, 60, 60)
+    gstu.print()
     student.print()
+    student2.print()
+    student3.print()
     println("High score: ${student.highest()}")
 }
 
@@ -22,8 +30,28 @@ private fun userInput() {
     student.nameCheck()
 }
 
-class Student(var name: String?, var english: Int, var math: Int) {
-    fun print(){
+class GraduateStudent(name: String?, english: Int, math: Int, var thesis : Int) : Student(name, english, math){
+    companion object{
+        var pass = 70
+    }
+
+    override fun print() {
+        println("$name\t$english\t$math\t$thesis\t${getAverage()}\t${passOrFailed()}\t${grading()}")
+    }
+
+    override fun passOrFailed() = if (getAverage() >= pass) "PASS" else "FAILED"
+}
+
+open class Student(var name: String?, var english: Int, var math: Int) {
+    companion object{
+        @JvmStatic
+        var pass = 60
+        fun test(){
+            println("testing")
+        }
+    }
+
+    open fun print(){
         println("$name\t$english\t$math\t${getAverage()}\t${passOrFailed()}\t${grading()}")
     }
 
@@ -35,7 +63,7 @@ class Student(var name: String?, var english: Int, var math: Int) {
         else -> 'F'
     }
 
-    fun passOrFailed() = if (getAverage() >= 60) "PASS" else "FAILED"
+    open fun passOrFailed() = if (getAverage() >= pass) "PASS" else "FAILED"
 
     fun getAverage() = (english + math) / 2
 
